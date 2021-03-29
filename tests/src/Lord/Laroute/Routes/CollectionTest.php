@@ -2,19 +2,22 @@
 
 namespace Lord\Laroute\Routes;
 
+use Illuminate\Routing\RouteCollection;
+use Jojo\Laroute\Routes\Collection;
 use Mockery;
+use PHPUnit\Framework\TestCase;
 
-class CollectionTest extends \PHPUnit_Framework_TestCase
+class CollectionTest extends TestCase
 {
     protected $routeCollection;
 
     protected $routes;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
-        $this->routeCollection = $this->mock('Illuminate\Routing\RouteCollection');
+        $this->routeCollection = $this->mock(RouteCollection::class);
         $this->routes          = $this->createInstance();
     }
 
@@ -38,7 +41,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
     }

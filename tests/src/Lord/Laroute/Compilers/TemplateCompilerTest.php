@@ -2,13 +2,16 @@
 
 namespace Lord\Laroute\Compilers;
 
+use Jojo\Laroute\Compilers\CompilerInterface;
+use Jojo\Laroute\Compilers\TemplateCompiler;
 use Mockery;
+use PHPUnit\Framework\TestCase;
 
-class TemplateCompilerTest extends \PHPUnit_Framework_TestCase
+class TemplateCompilerTest extends TestCase
 {
     protected $compiler;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -18,7 +21,7 @@ class TemplateCompilerTest extends \PHPUnit_Framework_TestCase
     public function testItIsOfTheCorrectInterface()
     {
         $this->assertInstanceOf(
-            'Lord\Laroute\Compilers\CompilerInterface',
+            CompilerInterface::class,
             $this->compiler
         );
     }
@@ -32,7 +35,7 @@ class TemplateCompilerTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expected, $this->compiler->compile($template, $data));
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
     }
