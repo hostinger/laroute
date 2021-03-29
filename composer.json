@@ -1,5 +1,5 @@
 {
-    "name": "jojo/laroute",
+    "name": "hostinger/laroute",
     "description": "Access Laravels URL/Route helper functions, from JavaScript or routes from JSON",
     "keywords": [
         "laravel",
