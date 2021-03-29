@@ -2,9 +2,14 @@
 
 namespace Lord\Laroute\Generators;
 
+use Illuminate\Filesystem\Filesystem;
+use Jojo\Laroute\Compilers\CompilerInterface;
+use Jojo\Laroute\Generators\GeneratorInterface;
+use Jojo\Laroute\Generators\TemplateGenerator;
 use Mockery;
+use PHPUnit\Framework\TestCase;
 
-class TemplateGeneratorTest extends \PHPUnit_Framework_TestCase
+class TemplateGeneratorTest extends TestCase
 {
     protected $compiler;
 
@@ -12,12 +17,12 @@ class TemplateGeneratorTest extends \PHPUnit_Framework_TestCase
 
     protected $generator;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
-        $this->compiler   = $this->mock('Lord\Laroute\Compilers\CompilerInterface');
-        $this->filesystem = $this->mock('Illuminate\Filesystem\Filesystem');
+        $this->compiler   = $this->mock(CompilerInterface::class);
+        $this->filesystem = $this->mock(Filesystem::class);
 
         $this->generator = new TemplateGenerator($this->compiler, $this->filesystem);
     }
@@ -25,7 +30,7 @@ class TemplateGeneratorTest extends \PHPUnit_Framework_TestCase
     public function testItIsOfTheCorrectInterface()
     {
         $this->assertInstanceOf(
-            'Lord\Laroute\Generators\GeneratorInterface',
+            GeneratorInterface::class,
             $this->generator
         );
     }
@@ -63,7 +68,7 @@ class TemplateGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($actual, $filePath);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
     }
